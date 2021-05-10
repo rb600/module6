@@ -1,0 +1,14 @@
+body {
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+input,
+button {
+  padding: 10px;
+}
+
+img{
+  width=200px;
+}

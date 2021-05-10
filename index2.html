@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Generate Random Images</title>
+<style>
+    body{
+    margin-top:30px;
+    
+    }
+    #button_style{
+        position: relative;
+        margin-left: 30%;
+        width: 500px;
+        height: 50px;
+        margin-bottom: 20px;
+        color:#555;
+        background-color: radial-gradient(#008080,#00ffff,);
+        border-color: aqua;
+        border-radius: 30px 30px;
+        text-decoration: blink;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <div>
+        <button id="button_style" onclick="renderDogs();">
+        To See Random Dogs Click Here
+        </button>
+    </div>
+    <script>
+        async function getRandomDog()
+        {
+            let url ="https://dog.ceo/api/breeds/image/random";
+            try{
+                let res = await fetch(url);
+                return await res.json();
+            }
+            catch(error){
+                console.log(error);
+            }
+        }
+        async function renderDogs()
+        {
+            let dogs = await getRandomDog();
+            var dog =[];
+            dog = new Image();
+            dog.src=dogs.message;
+            dog.width="620";
+            dog.height="320";
+            var images = document.getElementsByTagName('img');
+                        var l=images.length;
+            if(l>3)
+            {
+                for(var p=0;p<l;p++)
+                {
+                    images[0].parentNode.removeChild(images[0]);
+                }
+            }
+             document.body.appendChild(dog);
+        } 
+    </script>
+</body>
+</html>
